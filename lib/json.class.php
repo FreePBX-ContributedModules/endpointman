@@ -339,7 +339,7 @@ if(!class_exists('Services_JSON')) {
 	                */
 	                for ($c = 0; $c < $strlen_var; ++$c) {
 
-	                    $ord_var_c = ord($var{$c});
+	                    $ord_var_c = ord($var[$c]);
 
 	                    switch (true) {
 	                        case $ord_var_c == 0x08:
@@ -362,18 +362,18 @@ if(!class_exists('Services_JSON')) {
 	                        case $ord_var_c == 0x2F:
 	                        case $ord_var_c == 0x5C:
 	                            // double quote, slash, slosh
-	                            $ascii .= '\\'.$var{$c};
+	                            $ascii .= '\\'.$var[$c];
 	                            break;
 
 	                        case (($ord_var_c >= 0x20) && ($ord_var_c <= 0x7F)):
 	                            // characters U-00000000 - U-0000007F (same as ASCII)
-	                            $ascii .= $var{$c};
+	                            $ascii .= $var[$c];
 	                            break;
 
 	                        case (($ord_var_c & 0xE0) == 0xC0):
 	                            // characters U-00000080 - U-000007FF, mask 110XXXXX
 	                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
-	                            $char = pack('C*', $ord_var_c, ord($var{$c + 1}));
+	                            $char = pack('C*', $ord_var_c, ord($var[$c + 1]));
 	                            $c += 1;
 	                            $utf16 = $this->utf82utf16($char);
 	                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -383,8 +383,8 @@ if(!class_exists('Services_JSON')) {
 	                            // characters U-00000800 - U-0000FFFF, mask 1110XXXX
 	                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 	                            $char = pack('C*', $ord_var_c,
-	                                         ord($var{$c + 1}),
-	                                         ord($var{$c + 2}));
+	                                         ord($var[$c + 1]),
+	                                         ord($var[$c + 2]));
 	                            $c += 2;
 	                            $utf16 = $this->utf82utf16($char);
 	                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -394,9 +394,9 @@ if(!class_exists('Services_JSON')) {
 	                            // characters U-00010000 - U-001FFFFF, mask 11110XXX
 	                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 	                            $char = pack('C*', $ord_var_c,
-	                                         ord($var{$c + 1}),
-	                                         ord($var{$c + 2}),
-	                                         ord($var{$c + 3}));
+	                                         ord($var[$c + 1]),
+	                                         ord($var[$c + 2]),
+	                                         ord($var[$c + 3]));
 	                            $c += 3;
 	                            $utf16 = $this->utf82utf16($char);
 	                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -406,10 +406,10 @@ if(!class_exists('Services_JSON')) {
 	                            // characters U-00200000 - U-03FFFFFF, mask 111110XX
 	                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 	                            $char = pack('C*', $ord_var_c,
-	                                         ord($var{$c + 1}),
-	                                         ord($var{$c + 2}),
-	                                         ord($var{$c + 3}),
-	                                         ord($var{$c + 4}));
+	                                         ord($var[$c + 1]),
+	                                         ord($var[$c + 2]),
+	                                         ord($var[$c + 3]),
+	                                         ord($var[$c + 4]));
 	                            $c += 4;
 	                            $utf16 = $this->utf82utf16($char);
 	                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -419,11 +419,11 @@ if(!class_exists('Services_JSON')) {
 	                            // characters U-04000000 - U-7FFFFFFF, mask 1111110X
 	                            // see http://www.cl.cam.ac.uk/~mgk25/unicode.html#utf-8
 	                            $char = pack('C*', $ord_var_c,
-	                                         ord($var{$c + 1}),
-	                                         ord($var{$c + 2}),
-	                                         ord($var{$c + 3}),
-	                                         ord($var{$c + 4}),
-	                                         ord($var{$c + 5}));
+	                                         ord($var[$c + 1]),
+	                                         ord($var[$c + 2]),
+	                                         ord($var[$c + 3]),
+	                                         ord($var[$c + 4]),
+	                                         ord($var[$c + 5]));
 	                            $c += 5;
 	                            $utf16 = $this->utf82utf16($char);
 	                            $ascii .= sprintf('\u%04s', bin2hex($utf16));
@@ -598,7 +598,7 @@ if(!class_exists('Services_JSON')) {
 	                    for ($c = 0; $c < $strlen_chrs; ++$c) {
 
 	                        $substr_chrs_c_2 = substr($chrs, $c, 2);
-	                        $ord_chrs_c = ord($chrs{$c});
+	                        $ord_chrs_c = ord($chrs[$c]);
 
 	                        switch (true) {
 	                            case $substr_chrs_c_2 == '\b':
@@ -641,7 +641,7 @@ if(!class_exists('Services_JSON')) {
 	                                break;
 
 	                            case ($ord_chrs_c >= 0x20) && ($ord_chrs_c <= 0x7F):
-	                                $utf8 .= $chrs{$c};
+	                                $utf8 .= $chrs[$c];
 	                                break;
 
 	                            case ($ord_chrs_c & 0xE0) == 0xC0:
@@ -727,7 +727,7 @@ if(!class_exists('Services_JSON')) {
 	                        $top = end($stk);
 	                        $substr_chrs_c_2 = substr($chrs, $c, 2);
 
-	                        if (($c == $strlen_chrs) || (($chrs{$c} == ',') && ($top['what'] == SERVICES_JSON_SLICE))) {
+	                        if (($c == $strlen_chrs) || (($chrs[$c] == ',') && ($top['what'] == SERVICES_JSON_SLICE))) {
 	                            // found a comma that is not inside a string, array, etc.,
 	                            // OR we've reached the end of the character list
 	                            $slice = substr($chrs, $top['where'], ($c - $top['where']));
