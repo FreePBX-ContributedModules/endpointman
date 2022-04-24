@@ -769,12 +769,12 @@ if(!class_exists('Services_JSON')) {
 
 	                            }
 
-	                        } elseif ((($chrs{$c} == '"') || ($chrs{$c} == "'")) && ($top['what'] != SERVICES_JSON_IN_STR)) {
+	                        } elseif ((($chrs[$c] == '"') || ($chrs[$c] == "'")) && ($top['what'] != SERVICES_JSON_IN_STR)) {
 	                            // found a quote, and we are not inside a string
 	                            array_push($stk, array('what' => SERVICES_JSON_IN_STR, 'where' => $c, 'delim' => $chrs{$c}));
 	                            //print("Found start of string at {$c}\n");
 
-	                        } elseif (($chrs{$c} == $top['delim']) &&
+	                        } elseif (($chrs[$c] == $top['delim']) &&
 	                                 ($top['what'] == SERVICES_JSON_IN_STR) &&
 	                                 ((strlen(substr($chrs, 0, $c)) - strlen(rtrim(substr($chrs, 0, $c), '\\'))) % 2 != 1)) {
 	                            // found a quote, we're in a string, and it's not escaped
@@ -783,24 +783,24 @@ if(!class_exists('Services_JSON')) {
 	                            array_pop($stk);
 	                            //print("Found end of string at {$c}: ".substr($chrs, $top['where'], (1 + 1 + $c - $top['where']))."\n");
 
-	                        } elseif (($chrs{$c} == '[') &&
+	                        } elseif (($chrs[$c] == '[') &&
 	                                 in_array($top['what'], array(SERVICES_JSON_SLICE, SERVICES_JSON_IN_ARR, SERVICES_JSON_IN_OBJ))) {
 	                            // found a left-bracket, and we are in an array, object, or slice
 	                            array_push($stk, array('what' => SERVICES_JSON_IN_ARR, 'where' => $c, 'delim' => false));
 	                            //print("Found start of array at {$c}\n");
 
-	                        } elseif (($chrs{$c} == ']') && ($top['what'] == SERVICES_JSON_IN_ARR)) {
+	                        } elseif (($chrs[$c] == ']') && ($top['what'] == SERVICES_JSON_IN_ARR)) {
 	                            // found a right-bracket, and we're in an array
 	                            array_pop($stk);
 	                            //print("Found end of array at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
 
-	                        } elseif (($chrs{$c} == '{') &&
+	                        } elseif (($chrs[$c] == '{') &&
 	                                 in_array($top['what'], array(SERVICES_JSON_SLICE, SERVICES_JSON_IN_ARR, SERVICES_JSON_IN_OBJ))) {
 	                            // found a left-brace, and we are in an array, object, or slice
 	                            array_push($stk, array('what' => SERVICES_JSON_IN_OBJ, 'where' => $c, 'delim' => false));
 	                            //print("Found start of object at {$c}\n");
 
-	                        } elseif (($chrs{$c} == '}') && ($top['what'] == SERVICES_JSON_IN_OBJ)) {
+	                        } elseif (($chrs[$c] == '}') && ($top['what'] == SERVICES_JSON_IN_OBJ)) {
 	                            // found a right-brace, and we're in an object
 	                            array_pop($stk);
 	                            //print("Found end of object at {$c}: ".substr($chrs, $top['where'], (1 + $c - $top['where']))."\n");
