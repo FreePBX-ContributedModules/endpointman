@@ -511,7 +511,7 @@ class Endpointman_Templates
 			$sql = "SELECT * FROM  endpointman_custom_configs WHERE product_id = '" . $row['product_id'] . "' AND original_name = '" . $files . "'";
 			$alt_configs_list = sql($sql, 'getAll', DB_FETCHMODE_ASSOC );
 			
-			if ( count($alt_configs_list) > 0) 
+			if ( count(array($alt_configs_list)) > 0) 
 			{
 				$files = str_replace(".", "_", $files);
 				foreach ($alt_configs_list as $ccf) 

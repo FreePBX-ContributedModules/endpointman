@@ -27,7 +27,7 @@ echo '<div class="list-group">';
 
 if (array_key_exists('epm_oss', $li)){
 echo '<span class="list-group-item"><h3>' . _("Open Source Information") . '</h3></span>';
-echo '<a class="list-group-item" href="?display=epm_oss">' . $li[epm_oss] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_oss">' . $li['epm_oss'] . '</a>';
 }
 
 
@@ -40,14 +40,14 @@ echo '<span class="list-group-item"><h3>' . _("Endpoint Manager") . '</h3></span
 }
 
 if (array_key_exists('epm_advanced', $li)){
-echo '<a class="list-group-item" href="?display=epm_advanced">' . $li[epm_advanced] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_advanced">' . $li['epm_advanced'] . '</a>';
 }
 if (array_key_exists('epm_devices', $li)){
-echo '<a class="list-group-item" href="?display=epm_devices">' . $li[epm_devices] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_devices">' . $li['epm_devices'] . '</a>';
 }
 if (array_key_exists('epm_config', $li)){
 echo '<span class="list-group-item"><h3>' . _("Brands") . '</h3></span>';
-echo '<a class="list-group-item" href="?display=epm_config">' . $li[epm_config] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_config">' . $li['epm_config'] . '</a>';
 }
 if (
 array_key_exists('epm_templates', $li) or 
@@ -57,10 +57,10 @@ array_key_exists('epm_placeholders', $li)
 echo '<span class="list-group-item"><h3>' . _("Advanced") . '</h3></span>';
 }
 if (array_key_exists('epm_templates', $li)){
-echo '<a class="list-group-item" href="?display=epm_templates">' . $li[epm_templates] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_templates">' . $li['epm_templates'] . '</a>';
 }
 if (array_key_exists('epm_placeholders', $li)){
-echo '<a class="list-group-item" href="?display=epm_placeholders">' . $li[epm_placeholders] . '</a>';
+echo '<a class="list-group-item" href="?display=epm_placeholders">' . $li['epm_placeholders'] . '</a>';
 }
 echo '</div>';
 ?>

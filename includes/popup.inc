@@ -402,7 +402,7 @@ if($_REQUEST['pop_type'] == "alt_cfg_edit") {
         $sql = "SELECT * FROM endpointman_custom_configs WHERE product_id = '". $_REQUEST['product_select'] . "'";
         $res = $endpoint->eda->sql($sql);
         $i = 0;
-        if(count($res)) {
+        if(count(array($res))) {
             $data = $endpoint->eda->sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
             foreach($data as $row2) {
                 $sql_file_list[$i]['value'] = $row2['id'];

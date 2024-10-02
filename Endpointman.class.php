@@ -1030,7 +1030,7 @@ echo 'TFTP Server check failed on last past. Skipping';
 
     	//$res = sql($sql);
 		$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
-    	if (count($res)) {
+    	if (count(array($res))) {
     		//Returns Brand Name, Brand Directory, Model Name, Mac Address, Extension (FreePBX), Custom Configuration Template, Custom Configuration Data, Product Name, Product ID, Product Configuration Directory, Product Configuration Version, Product XML name,
     		$sql = "SELECT endpointman_mac_list.specific_settings, endpointman_mac_list.config_files_override, endpointman_mac_list.global_user_cfg_data, endpointman_model_list.id as model_id, endpointman_brand_list.id as brand_id, endpointman_brand_list.name, endpointman_brand_list.directory, endpointman_model_list.model, endpointman_mac_list.mac, endpointman_mac_list.template_id, endpointman_mac_list.global_custom_cfg_data, endpointman_product_list.long_name, endpointman_product_list.id as product_id, endpointman_product_list.cfg_dir, endpointman_product_list.cfg_ver, endpointman_model_list.template_data, endpointman_model_list.enabled, endpointman_mac_list.global_settings_override FROM endpointman_line_list, endpointman_mac_list, endpointman_model_list, endpointman_brand_list, endpointman_product_list WHERE endpointman_mac_list.model = endpointman_model_list.id AND endpointman_brand_list.id = endpointman_model_list.brand AND endpointman_product_list.id = endpointman_model_list.product_id AND endpointman_mac_list.id = endpointman_line_list.mac_id AND endpointman_mac_list.id = " . $mac_id;
     		$phone_info = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
@@ -1100,7 +1100,7 @@ echo 'TFTP Server check failed on last past. Skipping';
     	$brand = sql($oui_sql, 'getRow', DB_FETCHMODE_ASSOC);
 
     	$res = sql($oui_sql);
-    	$brand_count = count($res);
+    	$brand_count = count(array($res));
 
     	if (!$brand_count) {
     		//oui doesn't have a matching mysql reference, probably a PC/router/wap/printer of some sort.
@@ -1207,7 +1207,7 @@ $this->error['parse_configs'] = 'Error Returned From Timezone Library: ' . $e->g
     						$sql = "SELECT original_name,data FROM endpointman_custom_configs WHERE id = " . $list;
     						//$res = sql($sql);
 							$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
-    						if (count($res)) {
+    						if (count(array($res))) {
     							$data = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
     							$provisioner_lib->config_files_override[$data['original_name']] = $data['data'];
     						}
@@ -1222,7 +1222,7 @@ $this->error['parse_configs'] = 'Error Returned From Timezone Library: ' . $e->g
     						$sql = "SELECT original_name,data FROM endpointman_custom_configs WHERE id = " . $list;
     						//$res = sql($sql);
 							$res = sql($sql, 'getAll', DB_FETCHMODE_ASSOC);
-    						if (count($res)) {
+    						if (count(array($res))) {
     							$data = sql($sql, 'getRow', DB_FETCHMODE_ASSOC);
     							$provisioner_lib->config_files_override[$data['original_name']] = $data['data'];
     						}
@@ -1773,7 +1773,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
                 $brand = $this->eda->sql($oui_sql, 'getRow', DB_FETCHMODE_ASSOC);
 
                 $res = $this->eda->sql($oui_sql);
-                $brand_count = count($res);
+                $brand_count = count(array($res));
 
                 if (!$brand_count) {
                     //oui doesn't have a matching mysql reference, probably a PC/router/wap/printer of some sort.
@@ -1787,7 +1787,7 @@ $this->error['parse_configs'] = "File not written to hard drive!";
 
                 $res = $this->eda->sql($epm_sql);
 
-                $epm = count($res) ? TRUE : FALSE;
+                $epm = count(array($res)) ? TRUE : FALSE;
 
                 //Add into a final array
                 $final[$z] = array("ip" => $ip, "mac" => $mac, "mac_strip" => $mac_strip, "oui" => $oui, "brand" => $brand['name'], "brand_id" => $brand['id'], "endpoint_managed" => $epm);
@@ -2059,9 +2059,9 @@ $this->error['parse_configs'] = "File not written to hard drive!";
         while ($i < count($config_files)) {
             $config_files[$i] = str_replace(".", "_", $config_files[$i]);
 
-            if (isset($variables[config_files][$i])) {
+            if (isset($variables['config_files'][$i])) {
 
-                $variables[$config_files[$i]] = explode("_", $variables[config_files][$i], 2);
+                $variables[$config_files[$i]] = explode("_", $variables['config_files'][$i], 2);
 
                 $variables[$config_files[$i]] = $variables[$config_files[$i]][0];
                 if ($variables[$config_files[$i]] > 0) {

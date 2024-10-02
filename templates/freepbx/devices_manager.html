@@ -463,14 +463,14 @@
 	?>
 
         <tr class="rowGroup{$value.master_id} toggle_all" id="{$value.master_id}" style="display:none;">
-			<td align='center' width="7%"><i class="icon-off icon-large <?php if ($value3[status][status] === TRUE) {echo "green";} else { echo "red";}?> alt="<?php echo $value3[status][ip];?>:<?php echo $value3[status][port];?>"></i><input type="checkbox" class="device" name="selected[]" value="<?php echo $value3[ext];?>"></td>
-            <td align='center' width='13%'><?php echo $value3[mac];?></td>
-			<td align='center' width='13%'><?php echo $value3[ipei];?></td>
-            <td width="13%" align='center'><?php echo $value3[name];?></td>
-            <td width="10%" align='center'><?php echo $value3[model];?></td>
+			<td align='center' width="7%"><i class="icon-off icon-large <?php if ($value3['status']['status'] === TRUE) {echo "green";} else { echo "red";}?> alt="<?php echo $value3['status']['ip'];?>:<?php echo $value3['status']['port'];?>"></i><input type="checkbox" class="device" name="selected[]" value="<?php echo $value3['ext'];?>"></td>
+            <td align='center' width='13%'><?php echo $value3['mac'];?></td>
+			<td align='center' width='13%'><?php echo $value3['ipei'];?></td>
+            <td width="13%" align='center'><?php echo $value3['name'];?></td>
+            <td width="10%" align='center'><?php echo $value3['model'];?></td>
             <td width="10%" align='center'>{$value.line}</td>
             <td width="19%" align='center'>{$value.ext} - {$value.description}</td>
-            <td align='center' width='15%'><a href="#" onclick="submit_stype('edit',<?php echo $value3['id'];?>);"><?php echo $value3[template_name];?></a></td>
+            <td align='center' width='15%'><a href="#" onclick="submit_stype('edit',<?php echo $value3['id'];?>);"><?php echo $value3['template_name'];?></a></td>
 			<td align='center' width='6%'><div id="demo"><a href="#" onclick="submit_wtype('edit',<?php echo $value3['id'];?>);"><i class='fa fa-edit' alt='<?php echo _('Edit')?>' title="Edit phone"></i></a></div></td>
         </tr>
         {/loop}
