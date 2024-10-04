@@ -3597,12 +3597,8 @@ class endpointmanager {
                 }
 
                 //Find out if endpoint has already been configured for this mac address
-                $epm_sql = "SELECT * FROM endpointman_mac_list WHERE mac LIKE  '%" . $mac_strip . "%'";
-                $epm_row = $this->eda->sql($epm_sql, 'getRow', DB_FETCHMODE_ASSOC);
-
-                $res = $this->eda->sql($epm_sql);
-
-                $epm = count($res) ? TRUE : FALSE;
+                $count_sql = "SELECT count(*) FROM endpointman_mac_list WHERE mac LIKE  '%" . $mac_strip . "%'";
+                $epm =  $this->eda->sql($count_sql, 'getOne');
 
                 //Add into a final array
                 $final[$z] = array("ip" => $ip, "mac" => $mac, "mac_strip" => $mac_strip, "oui" => $oui, "brand" => $brand['name'], "brand_id" => $brand['id'], "endpoint_managed" => $epm);
