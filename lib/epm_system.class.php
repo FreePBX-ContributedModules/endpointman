@@ -272,7 +272,7 @@ class epm_system {
         if (!empty($_ENV['TEMP'])) {
             return realpath($_ENV['TEMP']);
         }
-        $tempfile = tempnam(uniqid(rand(), TRUE), '');
+        $tempfile = tempnam(sys_get_temp_dir(), 'prefix_');
         if (file_exists($tempfile)) {
             unlink($tempfile);
             return realpath(dirname($tempfile));
