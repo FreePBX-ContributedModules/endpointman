@@ -11,7 +11,12 @@ namespace FreePBX\modules;
 
 class Endpointman_Devices
 {
-	public function __construct($freepbx = null, $cfgmod = null) 
+	public $freepbx;
+	public $db;
+	public $config;
+	public $configmod;
+
+	public function __construct($freepbx, $cfgmod) 
 	{
 		$this->freepbx = $freepbx;
 		$this->db = $freepbx->Database;

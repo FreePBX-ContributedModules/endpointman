@@ -192,7 +192,7 @@ class Text_Diff_Engine_native {
                 }
                 $matches = $ymatches[$line];
                 reset($matches);
-                while (list(, $y) = each($matches)) {
+                foreach ($matches as $y) {
                     if (empty($this->in_seq[$y])) {
                         $k = $this->_lcsPos($y);
                         assert($k > 0);
@@ -200,7 +200,7 @@ class Text_Diff_Engine_native {
                         break;
                     }
                 }
-                while (list(, $y) = each($matches)) {
+                foreach ($matches as $y) {
                     if ($y > $this->seq[$k - 1]) {
                         assert($y <= $this->seq[$k]);
                         /* Optimization: this is a common case: next match is
