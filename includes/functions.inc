@@ -19,6 +19,7 @@ class endpointmanager {
     public $eda; //endpoint data abstraction layer
     public $tpl; //Template System Object (RAIN TPL)
 
+    public $system; //system functions class
     /**
      *
      * @global array $amp_conf Data taken about FreePBX from FreePBX as a global, we move this into a public variable
