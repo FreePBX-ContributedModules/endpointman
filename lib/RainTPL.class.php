@@ -91,7 +91,7 @@ class RainTPL{
 	 * @return RainTPL
 	 */
 
-	function RainTPL( $tpl_dir = null, $tpl_compile_dir = null, $base_dir = null ){
+	function __construct( $tpl_dir = null, $tpl_compile_dir = null, $base_dir = null ){
 		if( $tpl_dir )
 			RainTPL::$tpl_dir = $tpl_dir . ( substr($tpl_dir,-1,1) != "/" ? "/" : "" );
 		if( $tpl_compile_dir )

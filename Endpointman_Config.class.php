@@ -16,8 +16,13 @@ class Endpointman_Config
 	public $LOCAL_PATH;
 	public $PHONE_MODULES_PATH;
 	public $PROVISIONER_BASE;
+	public $freepbx;
+	public $db;
+	public $config;
+	public $configmod;
+	public $system;
 
-	public function __construct($freepbx = null, $cfgmod = null, $system = null)
+	public function __construct($freepbx, $cfgmod, $system)
 	{
 		$this->freepbx = $freepbx;
 		$this->db = $freepbx->Database;

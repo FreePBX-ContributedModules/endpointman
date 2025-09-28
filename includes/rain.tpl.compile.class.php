@@ -206,7 +206,7 @@ class RainTPLCompile{
 				$compiled_code .= "<?php\n" .
 								 $space . "	\$tpl = new RainTPL( RainTPL::\$tpl_dir . dirname(\"{$include_var}\"));\n" .
 								 $space . "	\$tpl->assign( \$var );\n" .
-								 $space . "	" . ( !$this_loop_name ? null : "\$tpl->assign( \"key\", \$key{$this_loop_name} );\n" . "\$tpl->assign( \"value\", \$value{$this_loop_name} );\n" ) .
+								 $space . "	" . ( !$this_loop_name ? null : "\$tpl->assign( \"key\", \$key[{$this_loop_name}] );\n" . "\$tpl->assign( \"value\", \$value[{$this_loop_name}] );\n" ) .
 								 $space . "	\$tpl->draw(basename(\"{$include_var}\"));" . "\n" .
 								 "?>";
 			}
